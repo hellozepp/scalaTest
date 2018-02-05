@@ -4,7 +4,7 @@ version := "0.1"
 
 scalaVersion := "2.11.6"
 
-libraryDependencies ++= (
+libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-hive" % "1.6.2",
   "org.apache.spark" %% "spark-sql" % "1.6.2"
 )
