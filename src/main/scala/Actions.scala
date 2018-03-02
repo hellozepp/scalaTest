@@ -55,7 +55,7 @@ object Actions {
   /**
     * RDD中各个元素的个数
     * @param sc
-    */
+   */
   def countByValue(sc:SparkContext):Unit={
     val numbers=sc.parallelize(Array(1,2,3,4,5,6,4,3,1,3))
     val result=numbers.countByValue()
@@ -79,4 +79,5 @@ object Actions {
     println("-------------start!------------")
 
   }
+
 }

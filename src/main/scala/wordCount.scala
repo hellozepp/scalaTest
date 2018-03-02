@@ -11,9 +11,9 @@ object wordCount {
 
     //    System.setProperty("hadoop.home.dir", "E:\\studyTool\\hadoop-2.6.4\\hadoop-2.6.4")
        val conf=new SparkConf().setAppName("WordCount").setMaster("local[4]")
-        conf.set("spark.driver.allowMultipleContexts","true")
 
-    //val conf=new SparkConf().setAppName("WordCount").setMaster("spark://10.1.170.61:8020") //运行在集群中
+//    val conf=new SparkConf().setAppName("WordCount").setMaster("spark://192.168.137.6:8020") //运行在集群中
+    conf.set("spark.driver.allowMultipleContexts","true")
 
     /**
       * 2.创建SparkContext对象
@@ -32,7 +32,7 @@ object wordCount {
       * ~由其他RDD操作产生
       * 数据会被RDD 划分称为一系列的Partitions,分配到每个Partition的数据属于一个Task的处理范畴
       */
-    val lines=sc.textFile("demo.txt") //读取本地文件
+    val lines=sc.textFile("/demo.txt") //读取本地文件
 
     //  val lines = sc.textFile("/library/wordcount/input")   // 读取HDFS文件，并切分成不同的Partition
     //  val lines = sc.textFile("hdfs://master:9000/libarary/wordcount/input")  // 或者明确指明是从HDFS上获取数据

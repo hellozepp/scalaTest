@@ -1,5 +1,8 @@
 import org.apache.spark.{SparkConf, SparkContext}
 
+/**
+  * 转换
+  */
 object Transformations {
 
   def main(args: Array[String]): Unit = {
@@ -8,18 +11,34 @@ object Transformations {
     conf.set("spark.driver.allowMultipleContexts","true")
 
     val sc=new SparkContext(conf)
-    //mapTransformation(sc)
+
+//   unionTransformations(sc)
+
+//    mapTransformation(sc)
    // filterTransformation(sc)
 //    flatMapTransformation(sc)
 //    reduceByKeyTransformation(sc)
-//    groupByKeyTransformation(sc)
+    groupByKeyTransformation(sc)
 //    joinTransformation(sc)
-    leftOuterJoinTransformation(sc)
+//    leftOuterJoinTransformation(sc)
     sc.stop()
   }
 
   /**
+    * 返回一个新的数据集，由原数据集和参数联合而成
+    * @param sc
+    */
+  def unionTransformations(sc:SparkContext): Unit ={
+    val linesRDD=sc.parallelize("11")
+    val linesRDDTwo=sc.parallelize("22")
+    val newLines = linesRDD.union(linesRDDTwo)
+    newLines.collect.foreach(println)
+
+  }
+  /**
     * 将函数应用于RDD的每个元素，将返回值构成新的RDD
+    *
+    * map(func)返回一个新的分布式数据集，由每个原元素经过func函数转换后组成
     * @param sc
     */
  def  mapTransformation(sc:SparkContext):Unit={
@@ -31,6 +50,8 @@ object Transformations {
 
   /**
     * 返回一个由通过filter()函数的元素组成的RDD，结果为true的元素会返回
+    *
+    * 返回一个新的数据集，由经过func函数后返回值为true的元素组成
     * @param sc
     */
   def filterTransformation(sc:SparkContext):Unit={
@@ -49,7 +70,9 @@ object Transformations {
     val linesRDD=sc.parallelize(lines)
     val words=linesRDD.flatMap(line=>line.split(" "))
     words.collect.foreach(println)
+
   }
+
 
   /**
     * reduceByKey必须用于元素是(key value)的元素，把key相同的元素进行merge操作
@@ -67,7 +90,10 @@ object Transformations {
 
   /**groupBykey也是对每个key进行合并操作，但是只生成一个sequence,
     * groupByKey本身不能自定义操作函数
+    *note:
+    * 默认情况下，使用8个并行任务进行分组，你可以传入numTask可选参数，根据数据量设置不同数目的Task
     *
+    * groupByKey和filter结合，可以实现类似hadoop中的Reduce功能
     * @param sc
     */
   def groupByKeyTransformation(sc:SparkContext):Unit={
@@ -75,7 +101,7 @@ object Transformations {
       Tuple2("Mary", "Math"), Tuple2("Mary", "Art"),
       Tuple2("Allin", "Computer"))
     val dataRDD=sc.parallelize(data)
-    val grouped=dataRDD.groupByKey()
+    val grouped=dataRDD.groupByKey(3)
     grouped.collect.foreach(println)
   }
 
