@@ -3,10 +3,10 @@ import org.apache.spark.{SparkConf, SparkContext}
 object WordCountSorted {
   def main(args: Array[String]) {
     val conf = new SparkConf().setAppName("WordCountSorted").setMaster("local[4]")
-    conf.set("spark.driver.allowMultipleContexts","true")
+    conf.set("spark.driver.allowMultipleContexts", "true")
     val sc = new SparkContext(conf)
 
-    val lines = sc.textFile("D:/studyCode/resource/wordcount.txt")
+    val lines = sc.textFile("src/main/resource/wordcount.txt")
     val words = lines.flatMap(_.split(" ")).filter(word => word != " ")
     val pairs = words.map(word => (word, 1))
 

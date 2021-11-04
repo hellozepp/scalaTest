@@ -9,6 +9,23 @@ import org.apache.spark.sql.{Row, SparkSession}
 
 /**
   * 学习链接 http://blog.csdn.net/whzhaochao/article/details/72529351
+  *
+  * 在讲解 createOrReplaceTempView 和createGlobalTempView的区别前，先了解下Spark Application 和  Spark Session区别
+  *
+  * Spark Application 使用：
+  *
+  * 针对单个批处理作业
+  * 多个job通过session交互式
+  * 不断满足请求的，长期存在的server
+  * 一个Spark job 可以包含多个map和reduce
+  * Spark Application 可以包含多个session实例
+  *
+  * SparkSession与Spark应用程序相关联：
+  *
+  * session 是两个或更多实体之间的交互媒介
+  * 在Spark 2.0中，你可以使用SparkSession创建
+  * 可以在不创建SparkConf，SparkContext或SQLContext的情况下创建SparkSession（它们封装在SparkSession中）
+  *
   */
 object SparkSqlLogWordCount {
   def main(args: Array[String]): Unit = {
@@ -25,49 +42,49 @@ object SparkSqlLogWordCount {
       * 加载结构化数据
       */
     //获取文件路径
-    val path=SparkSqlLogWordCount.getClass.getClassLoader.getResource("cdn.csv").getPath
+    val path = SparkSqlLogWordCount.getClass.getClassLoader.getResource("cdn.csv").getPath
     //读取文件
-    val df=sparkSession.read.csv(path)
+    val df = sparkSession.read.csv(path)
     //将加载的数据临时命名为log
     df.createOrReplaceTempView("log")
 
-    val allIpCountSQL="select count(DISTINCT _c1) from log"
+    val allIpCountSQL = "select count(DISTINCT _c1) from log"
 
-    val ipCountSQL="select _c1 as IP,count(_c1) as ipCount from log group by _c1 order by ipCount desc limit 10"
+    val ipCountSQL = "select _c1 as IP,count(_c1) as ipCount from log group by _c1 order by ipCount desc limit 10"
     //查询独立ip总数
-sparkSession.sql(allIpCountSQL).foreach(row=>println("独立IP总数:"+row.get(0)))
+    sparkSession.sql(allIpCountSQL).foreach(row => println("独立IP总数:" + row.get(0)))
 
     //查看ip数前10
-  sparkSession.sql(ipCountSQL).foreach(row=>println("IP:"+row.get(0)+"次数:"+row.get(1)))
+    sparkSession.sql(ipCountSQL).foreach(row => println("IP:" + row.get(0) + "次数:" + row.get(1)))
 
     //查询每个视频独立IP数
-    val videoIpCount="select _c0,count(DISTINCT _c1) as count from log  group by _c0 order by count desc  limit 10 "
-    sparkSession.sql(videoIpCount).foreach(row=>println("IP:"+row.get(0)+" 次数:"+row.get(1)))
+    val videoIpCount = "select _c0,count(DISTINCT _c1) as count from log  group by _c0 order by count desc  limit 10 "
+    sparkSession.sql(videoIpCount).foreach(row => println("IP:" + row.get(0) + " 次数:" + row.get(1)))
 
-    def  getHour(time:String)={
-      val date=new Date(Integer.valueOf(time)*1000);
-      val sf=new SimpleDateFormat("HH");
+    def getHour(time: String) = {
+      val date = new Date(Integer.valueOf(time) * 1000);
+      val sf = new SimpleDateFormat("HH");
       sf.format(date)
     }
 
     //查询每个小时视频流量
-    val hourCdnSQL="select _c4,_c8 from log "
+    val hourCdnSQL = "select _c4,_c8 from log "
     //取出时间和大小将格式化时间，RDD中格式为 (小时,大小)
-    val dataRdd= sparkSession.sql(hourCdnSQL).rdd.map(row=>Row(getHour(row.getString(0)),java.lang.Long.parseLong(row.get(1).toString)))
+    val dataRdd = sparkSession.sql(hourCdnSQL).rdd.map(row => Row(getHour(row.getString(0)), java.lang.Long.parseLong(row.get(1).toString)))
 
-    val schema=StructType(
+    val schema = StructType(
       Seq(
-        StructField("hour",StringType,true)
-        ,StructField("size",LongType,true)
+        StructField("hour", StringType, true)
+        , StructField("size", LongType, true)
       )
     )
 
     //将dataRdd转成DataFrame
-    val peopleDataFrame = sparkSession.createDataFrame(dataRdd,schema)
+    val peopleDataFrame = sparkSession.createDataFrame(dataRdd, schema)
     peopleDataFrame.createOrReplaceTempView("cdn")
     //按小时分组统计
     val results = sparkSession.sql("SELECT hour , sum(size) as size  FROM cdn group by hour  order by hour ")
-    results.foreach(row=>println(row.get(0)+"时 流量:"+row.getLong(1)/(1024*1024*1024)+"G"))
+    results.foreach(row => println(row.get(0) + "时 流量:" + row.getLong(1) / (1024 * 1024 * 1024) + "G"))
   }
 
 }
