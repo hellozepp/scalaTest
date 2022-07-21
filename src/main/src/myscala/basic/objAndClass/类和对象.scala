@@ -43,7 +43,7 @@ object Test1a {
   *构造器参数可以不带val或var，如果不带val或var的参数至少被一个方法所使用，
   *那么它将会被提升为字段
   */
-//在类名后面加private就变成了私有的,只有半生能继承
+//在类名后面加private就变成了私有的,只有半生能获取
 class Queen private( name: String, prop: Array[String], private var age: Int = 18){
 
   println(prop.size)

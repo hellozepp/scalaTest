@@ -3,7 +3,7 @@ package myscala.basic.array_list_set_map_tuple
 import scala.collection.mutable
 
 /**
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 15:06
   */
 object Set01 {
@@ -12,7 +12,7 @@ object Set01 {
     // create
     val set = Set[Int](1, 2, 22, 3, 33, 4, 4, 4) //Set(1, 33, 2, 22, 3, 4)
     println(set)
-    println("--intercept--")
+    println("--intercept--") //交集
     val set1 = Set[Int](3, 4, 5, 6)
     val inter: Set[Int] = set.intersect(set1) // 3,4 交集
     val inter2 = set & set1 // intercept
@@ -22,16 +22,6 @@ object Set01 {
     val dif: Set[Int] = set.diff(set1) // 在set中，但不在set1中
     val dif2 = set &~ set1
     dif2.foreach(println)
-
-    /**
-      * filter
-      */
-    println("--filter --")
-    val fil: Set[Int] = set.filter(e => {
-      e > 10
-    })
-    fil.foreach(println)
-
 
     /**
       * 可变长的set

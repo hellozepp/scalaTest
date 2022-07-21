@@ -37,7 +37,7 @@ object abstractTest extends App {
 }
 
 
-//闭包
+//匿名闭包
 object Test2 {
   //匿名类
   val vall2 = (x: Int) => {

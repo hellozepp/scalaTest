@@ -10,12 +10,12 @@ class Miss02[T] {
     if (first > second) first else second
   }
 
-  //隐式转换一个函数
+  //隐式转换一个函数gt
   def select(first: T, second: T)(implicit ord: Ordering[T]): T = {
     if (ord.gt(first, second)) first else second
   }
 
-  //隐式转换一个类
+  //隐式转换一个类 T
   def random(first: T, second: T)(implicit ord: Ordering[T]): T = {
     import Ordered.orderingToOrdered
     if (first > second) first else second

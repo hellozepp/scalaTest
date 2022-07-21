@@ -19,27 +19,24 @@ import scala.collection.mutable.ArrayBuffer
   * 默认导入的是不可变的，不能CRUD。
   * 可以使用ArrayBuffer，是mutable
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 13:22
   */
 object Array01 {
   def main(args: Array[String]): Unit = {
 
 
-    val arr = Array[String](xs = "a", "b", "c", "d")
-    arr.foreach(s => {
-      println(s)
-    })
-    arr.foreach(println(_))
+    val arr = Array[String](xs = "a", "a", "c", "d")
+    arr.foreach(print(_))
+    println
 
-    println()
     val arr1 = new Array[Int](3) // 3 size
     arr1(0) = 100 // set
     arr1(1) = 101
     arr1(2) = 102
     arr1.foreach(println)
 
-    println()
+    println("----二维数组----")
 
     val array = new Array[Array[Int]](3)
     array(0) = Array[Int](xs=1, 2, 3)
@@ -51,7 +48,7 @@ object Array01 {
       println()
     })
 
-    println("--concat-")
+    println("--concat---")
 
     val array1 = Array.concat(arr, arr)
     array1.foreach(e => print(e + " "))
@@ -69,11 +66,11 @@ object Array01 {
       */
     val arr10: ArrayBuffer[Int] = ArrayBuffer[Int](1, 2, 3)
     arr10.+=(4) // append
+    arr10 += 5
     arr10.+=:(100) // insert into head
     arr10.append(44, 55, 66)
     arr10.foreach(println)
-
-
+    println("head:"+arr10.head)
   }
 
 }

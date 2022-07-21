@@ -6,7 +6,7 @@ package myscala.basic.match_partialfn_case
   *
   * 偏函数：只能匹配一个值，匹配上了返回某个值
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 19:26
   */
 object PartialFn01 {

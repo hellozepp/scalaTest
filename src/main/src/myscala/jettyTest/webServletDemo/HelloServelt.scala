@@ -23,7 +23,7 @@ class HelloServelt()
   override protected def doGet(request: HttpServletRequest, response: HttpServletResponse): Unit = {
     println("---------handle------------")
     println(JettyReceive.getIpAdrress(request))
-    println(request.getHeader("msg_size"))
+//    println(request.getHeader("msg_size"))
     //    println(getBodyDate(request))
     val mapByRequest = request.getParameterMap
     System.out.println("map count:" + mapByRequest.size)

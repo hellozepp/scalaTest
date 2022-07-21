@@ -21,7 +21,7 @@ package myscala.basic.array_list_set_map_tuple
   * println(iter.next())
   * }
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 18:20
   */
 object Tuple01 {

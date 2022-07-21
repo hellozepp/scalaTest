@@ -1,7 +1,7 @@
 package myscala.basic.fn
 
 /**
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 10:14
   */
 object Function01 {
@@ -12,6 +12,17 @@ object Function01 {
     println(min(5, 6))
     println(max1(4, 5))
     println(max2(22, 23))
+
+    println("----------匿名函数----------")
+    var inc = (x:Int) =>x+3
+    // =>（底层实现）
+    var incc = new Function1[Int,Int]{
+      def apply(x:Int):Int=x+3
+    }
+    Console println inc(1)
+    Console println  incc(1)
+    //无参
+    var userDir = () => { System.getProperty("user.dir") }
   }
 
   /**

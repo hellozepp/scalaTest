@@ -3,6 +3,8 @@ package myscala.basic.traitTest
 /**
   * Created by docker on 2017/5/22.
   * 特质
+  * trait: 接口和抽象类的整合
+  * trait 不可以传参
   */
 //作为接口使用
 object Tezhi {

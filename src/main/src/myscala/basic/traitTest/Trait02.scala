@@ -20,7 +20,7 @@ class Point(xx: Int, xy: Int) extends IsEqual {
 }
 
 /**
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 18:58
   */
 object Trait02 {

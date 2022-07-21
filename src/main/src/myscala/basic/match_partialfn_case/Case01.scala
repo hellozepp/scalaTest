@@ -2,7 +2,8 @@ package myscala.basic.match_partialfn_case
 
 /**
   * 样例类（case class）适合用于不可变的数据。它是一种特殊的类，能够被优化以用于模式匹配。
-  * case class类的参数都是可以直接访问的val（不能被修改）但是实际上编译成的class字节码会对book.name转成book.name()方法调用。如下图所示，name声明的时候是加了final关键字，并且生成了对应的name()方法。
+  * case class类的参数都是可以直接访问的val（不能被修改）但是实际上编译成的class字节码会对book.name转成book.name()方法调用。
+  * name声明的时候是加了final关键字，并且生成了对应的name()方法。
   * @param name
   * @param age
   */
@@ -18,7 +19,7 @@ case class Person2(var name: String, age: Int)
   * 3. 样例类默认帮实现了 toString, equals, copy, hashCode 等方法
   * 4. 可以new，也可以不用new
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 19:37
   */
 object Case01 {

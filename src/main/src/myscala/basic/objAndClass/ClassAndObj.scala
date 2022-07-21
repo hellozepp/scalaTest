@@ -14,7 +14,7 @@ package myscala.basic.objAndClass
   * 9. 在同一个scala文件中，class名称和object可以一样，则两者为伴生关系，两者可以互相访问私有属性。
   * 10. object不能传参，但可以定义apply 来做传参。实现构造的功能。可以定义多个apply，重载
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/27 20:01
   */
 abstract class Humans() {

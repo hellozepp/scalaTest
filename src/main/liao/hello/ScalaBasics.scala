@@ -15,12 +15,12 @@ object ScalaBasics {
   }
   
  
-//	  var line = ""
-//	  do {
-//	    println("Please input some words blow......")
-//	    line = readLine()
-//	    println("Read: " + line)
-//	  } while (line != "")
+	  var line = ""
+	  do {
+	    println("Please input some words blow......")
+	    line = readLine().toString
+	    println("Read: " + line)
+	  } while (line != "")
 
 	    
 //	    
@@ -31,7 +31,7 @@ object ScalaBasics {
   def doWhile(){
 	  var line = ""
 			  do {
-				  line = readLine()
+				  line = readLine().toString
 				  println("Read: " + line)
 			  } while (line != "")
   }

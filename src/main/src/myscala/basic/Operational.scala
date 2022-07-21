@@ -34,8 +34,8 @@ object TestOpt {
       for (arg <- args) result += arg
       result
     }
-
     var total = sum(1, 2, 3, 4)
+    total = sum(Array(1, 2, 3, 4): _*)
     println(total)
 
     println("====================")

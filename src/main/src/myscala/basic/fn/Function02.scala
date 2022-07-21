@@ -5,7 +5,7 @@ import java.util.Date
 /**
   * 偏应用函数的定义。在原有函数的基础上，给定固定的参数值，变化的参数用 _
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 10:34
   */
 object Function02 {
@@ -15,16 +15,16 @@ object Function02 {
 
     println(myrecursive(5))
     println()
-    println(funWithDefaultVal())
+    println("funWithDefaultVal() =》" + funWithDefaultVal())
     println(funWithDefaultVal(b = 200)) // 可指定某个参数的值
     println()
     funWithChangable("abc", "a", "c")
 
 
-    println(funAnony(1, 2))
+    println(funAnyone(1, 2))
 
-    println()
-    println(funNested(4))
+    println("-------funNested---------")
+    funNested(4)
 
 
     val date = new Date()
@@ -33,7 +33,7 @@ object Function02 {
 
     // 定义 偏应用函数。不变的参数写在前面，变化的写在后面
     def pianApp = showLog(date, _: String)
-    // 使用 偏应用函数时，只需要传入变化的参数值
+    // 使用 偏应用函数时，只需要传入变化的参数值，仅举例，时间需要改变
     pianApp("aaafdasfasdgdas")
     pianApp("东方大厦")
     pianApp("qqqqqqqqqqq")
@@ -42,7 +42,7 @@ object Function02 {
     /**
       * 高阶函数
       */
-    val str: String = funAdvanced1(funAdvanced, "scala")
+    val str = funAdvanced1(funAdvanced, "scala")
     println(str)
 
     val str1: String = funAdvanced1((a: Int, b: Int) => a * b, "scala2")
@@ -50,10 +50,10 @@ object Function02 {
 
     // return fn。注意调用时的写法
     println(funAdReturnF2(s = "kkk")("bbb", "ccc"))
-
+    // 匿名函数赋值
     //    val function: (Int, Int) => Int = funAdReturnF2 _
 
-
+    // 返回结果是一个函数，并调用
     val str2: String = funAdParamReturn((a: Int, b: Int) => {
       a * b
     })("hello", "world")
@@ -93,14 +93,12 @@ object Function02 {
   def funWithChangable(s: String*) = {
 
     s.foreach(s1 => {
-      println(s1)
+      print(s1 + " ")
     })
     println()
     // 当匿名函数的参数，在匿名函数体内只使用一次的话，可以省略s1，用_ 替代
-    s.foreach(println(_)) // 甚至_ 也可以省略
-
-    s.foreach(println)
-
+//    s.foreach(println(_)) // 甚至_ 也可以省略
+//    s.foreach(println)
   }
 
   /**
@@ -108,24 +106,34 @@ object Function02 {
     * () => {} 多用于：方法的参数是 函数时，常用匿名函数
     *
     */
-  def funAnony: (Int, Int) => Int = (a: Int, b: Int) => { // = 是把匿名函数 传给一个变量，和js一样
+  val funAnyone2 = (a: Int, b: Int) => a + b
+
+  // 等价于
+  val funAnyone1: (Int, Int) => Int = (a, b) => a + b
+
+  // 等价于
+  def funAnyone: (Int, Int) => Int = (a: Int, b: Int) => { // = 是把匿名函数 传给一个变量，和js一样
     a + b
   }
+
 
   /**
     * 嵌套方法
     */
   def funNested(num: Int) = {
-
+    var lastValue = 1
     def funN1(a: Int): Int = {
       if (a == 1) {
-        1
+        lastValue
       } else {
         a * funN1(a - 1)
       }
     }
 
-    funN1(num)
+    println(funN1(num))
+    println("----------funNested 2--------")
+    lastValue = 2
+    println(funN1(num))
   }
 
   /**
@@ -148,7 +156,7 @@ object Function02 {
   /**
     * 高阶函数
     * 1. 方法的 参数是函数
-    * 2. 方法的返回是函数。需要显示的写出方法的返回值类型(不然默认Unit)，加 _ 可以不必手写返回值类型
+    * 2. 方法的返回是函数。需要显示的写出方法的返回值类型(不然默认Unit)，套用函数然后结果是函数加 _ 可以不必手写返回值类型
     * 3. 方法的参数和返回都是fn
     */
   def funAdvanced1(f: (Int, Int) => Int, s: String): String = {
@@ -169,7 +177,7 @@ object Function02 {
 
   // 当不想写返回值类型时
   def funAdReturnF2(s: String) = {
-    def fun11(s1: String, s2: String): String = {
+    def fun11(s1: String, s2: String) = {
       s1 + "`" + s2 + "#" + s
     }
 

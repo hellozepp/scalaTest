@@ -17,7 +17,7 @@ class Rabbit(xname: String) {
   *
   * 装饰器模式
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 20:35
   */
 object ImplicitFn02 {
@@ -32,8 +32,6 @@ object ImplicitFn02 {
     r1.canFly()
     // rabbit本身没有canFly方法。但是当定义了一个隐式转换函数，
     // 输入参数为Rabbit，输出的类型如果有canFly，则可以
-
-
   }
 
 }

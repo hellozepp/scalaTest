@@ -19,7 +19,7 @@ class Girl(val name: String, val faceValue: Int, val size: Int) {
 class MissLeft[T: Ordering]() {
 
   def choose(first: T, second: T): T = {
-    val ord = implicitly[Ordering[T]]
+    val ord = implicitly[Ordering[T]] // 隐式转换类
     if (ord.gt(first, second)) first else second
   }
 }

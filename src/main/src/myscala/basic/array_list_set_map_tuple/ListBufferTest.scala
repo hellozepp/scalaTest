@@ -23,6 +23,8 @@ object ListBufferTest {
     if (a1 == 1) {
       println("-----------aaa-------------" + a1)
     }
+
+    println("-----------append-------------")
     var list1 = new ListBuffer[Int]
     list1.append(1)
     list1.append(1)

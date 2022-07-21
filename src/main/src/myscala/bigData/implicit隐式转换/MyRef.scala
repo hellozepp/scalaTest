@@ -3,8 +3,8 @@ package myscala.bigData.implicit隐式转换
 import java.io.File
 
 object MyRef {
-  //在这里声明
-  implicit def richFile(f: File): 隐式转换3 = new 隐式转换3(f)
+  //在这里声明输入是转换前，输出是转换后
+  implicit def richFile(f: File): 隐式转换2 = new 隐式转换2(f)
 
   implicit def todo(f: File): String = "隐式转换3.."
 }

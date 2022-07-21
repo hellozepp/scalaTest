@@ -34,6 +34,10 @@ class Outer {
 
     private[Inner] def d2() {}
 
+    private[myscala] def d3() {
+      println("d3")
+    }
+
     //默认
     //    这里的x指代某个所属的包、类或单例对象。
     //内部类访问
@@ -68,10 +72,29 @@ class Outer {
       println("d1方法被子类覆盖")
     }
 
+    override def f2() {
+      println("f2")
+    }
+
     //    f()
     //    d()
     d1()
     //    d2()
   }
 
+}
+
+object Inherte {
+  def main(args: Array[String]): Unit = {
+    val outer = new Outer()
+    val inner = new outer.Inner()
+    // 插值字符串
+    println(s"inner[xx1=${inner.xx1},xx2=${inner.xx2}]")
+    val inner1 = new outer.Inner1()
+    // 插值字符串
+    println(s"inner1[xx1=${inner1.xx1},xx2=${inner1.xx2}]")
+//    inner1.f1() //X protected拿不到
+    inner1.f2()
+    inner1.d3()
+  }
 }

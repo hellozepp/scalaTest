@@ -27,11 +27,12 @@ class IntList(){
   }
   
 }
-object IntList{
-  def apply(is:Int*): IntList = {
-    val intList=new IntList
-    for(j<-is){
-      intList.list+=j
+
+object IntList {
+  def apply(is: Int*): IntList = {
+    val intList = new IntList
+    for (j <- is) {
+      intList.list += j
     }
     intList
   }

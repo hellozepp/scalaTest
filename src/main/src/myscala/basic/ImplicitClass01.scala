@@ -5,7 +5,7 @@ class Rabbit1(xname: String) {
 }
 
 /**
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 20:46
   */
 object ImplicitClass01 {

@@ -35,7 +35,7 @@ class D extends B {
 
 }
 
-//2如果 extends和with同时使用则类比如放在前面
+//2如果 extends和with同时使用则类放在前面
 class WithClass extends A with B {
 
 }

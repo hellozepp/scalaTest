@@ -1,7 +1,7 @@
 package myscala.basic
 
 /**
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 13:16
   */
 object String01 {
@@ -30,6 +30,9 @@ object String01 {
     println("xxx".substring(0, "xxx".length))
 
     println(List(1, 2).filterNot(_ == 1))
+
+    val contentType = ""
+    print(contentType.trim.startsWith("application/x-www-form-urlencoded"))
   }
 
 

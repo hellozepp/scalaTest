@@ -14,16 +14,18 @@ class Function {
 
 object Function {
   def main(args: Array[String]) {
-    printInt(b = 5, a = 7); //传递给指定参数
+    printInt( 5, b = 7); //传递给指定参数
     printStrings("Runoob", "Scala", "Python");
     var increase = (x: Int) => x + 1 //x转化为x+1
-    println(increase(1))
-    //Scala函数按名称调用
+    val increase1 = increase
+    println(increase1(1))
+    //Scala函数按函数名称调用
     delayed(new Function().time())
     //定义的函数变量 multiplier 成为一个"闭包"，因为它引用到函数外面定义的变量
     var factor = 3
     val multiplier = (i: Int) => i * factor
     println("muliplier(1) value = " + multiplier(1))
+    factor = 4
     println("muliplier(2) value = " + multiplier(2))
     //匿名函数的写法 相当于变量等于lambda公式,入参要写类型
     val func = (xx1: Int, yy1: Double) => (yy1, xx1)
@@ -32,10 +34,11 @@ object Function {
     val func2: (Double, Int) => (Int, Double) = {
       (a, b) => (b, a)
     }
+    val func3: (Double, Int) => (Int, Double) = { (yy1: Double, xx1: Int) => (xx1, yy1)}
     //这种写法格式 *定义lambda公式格式 ，里面也得返回lambda（相当于声明lambda返回类型，后面执行部分是lambda内容）
-    //区别，设定了返回值格式`
+    //区别，设定了返回值格式
     val b: (Int, Int) => (Boolean, Boolean) = { (x, y) => (x > y, x < y) }
-    val b2: ((Int, Int) => (Boolean, Boolean)) = { (x, y) => (x > y, x < y) }
+    val b2: ((Int, Int) => (Boolean)) = { (x, y) => {x > y} }
     val someNumbers = List(-11, -10, -5, 0, 5, 10)
     someNumbers.foreach((x: Int) => print(x))
     println
@@ -47,7 +50,10 @@ object Function {
     println
     someNumbers.filter(_ > 0).foreach((x: Int) => print(x))
     println
-    val f = (_: Int) + (_: Int)
+    val f = {
+      // 单行表达式
+      (_: Int) + (_: Int)
+    }
     println(f(5, 10))
 
     //：后面为返回值，可以反lambda定义类型，或者直接诶写返回值类型
@@ -55,15 +61,16 @@ object Function {
       println(name)
     }
 
-    //神奇的下划线 方法变成函数
+    //神奇的下划线 方法变成匿名函数
     val m2func = m2 _
     m2func("hehe")
 
-    //    函数颗粒化
+
+
     def add(x: Int, y: Int) {
       x + y
     }
-
+    //    函数颗粒化
     def add1(x: Int) = (y: Int) => {
       x + y;
     }
@@ -126,14 +133,6 @@ object Function {
     sum = x.+(y)
     return sum
   }
-}
-package myscala.basi {} //定义包1
-package myscala.basic {
-
-  class hello {
-    println("hello")
-  }
-
 }
 
 /**
@@ -199,26 +198,6 @@ package p {
 
 }
 
-package public {
-
-  class Outer {
-
-    class Inner {
-      def f() {
-        println("f")
-      }
-
-      class InnerMost {
-        f() // 正确
-      }
-
-    }
-
-    (new Inner).f // 正确因为 f() 是 public
-  }
-
-}
-
 //朱构造器：参数直接跟在类名后面（）即构造
 //不带val 会 var 默认private
 class Person1(val name: String, val age: Int) {
@@ -267,9 +246,15 @@ class Obj() {
 
 class Obj1() extends Obj {
   override def dis() = {
-    "asdasdasd"
+//    "asdasdasd" //不能修改返回值类型
   }
 }
 
 // 隐藏成员
 import java.util.{HashMap => _} // 引入了util包的所有成员，但是HashMap被隐藏了
+
+object Functions {
+  def main(args: Array[String]): Unit ={
+//    val map1 = new util.HashMap() // 访问不了
+  }
+}

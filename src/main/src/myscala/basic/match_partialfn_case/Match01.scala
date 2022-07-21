@@ -5,12 +5,12 @@ package myscala.basic.match_partialfn_case
   * 模式匹配
   * 1. case _ 类似于java的switch/case的default
   * 2. 还可以匹配类型
-  * 3. 一旦匹配上，不会往下走了。
+  * 3. 一旦匹配上，不会往下走了。不用写break
   * 4. 注意匹配时，会有数值类型的转换。1.0 => 1
   *
   * 由模式匹配衍生出 偏函数
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 19:10
   */
 object Match01 {

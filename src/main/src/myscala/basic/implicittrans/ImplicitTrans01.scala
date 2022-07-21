@@ -2,7 +2,7 @@ package myscala.basic.implicittrans
 
 
 /**
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 20:23
   */
 object ImplicitTrans01 {

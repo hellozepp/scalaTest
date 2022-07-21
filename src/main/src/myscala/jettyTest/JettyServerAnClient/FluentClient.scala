@@ -9,7 +9,7 @@ object FluentClient {
   def main(args: Array[String]): Unit = {
     val value = "{\"大大说的sendLog\":{\"token=\":\"token\",\"logLine=\":\"大大说的dsfafd\"}}"
     val length = value.length.toString
-    Request.Post("http://127.0.0.1:12345/api_v1/writelog")
+    Request.Post("http://127.0.0.1:12345/v2/writelog")
       .addHeader("Content-Type", "application/x-www-form-urlencoded")
             .addHeader("msg_size", length)
 //            .bodyForm(Form.form().add("value", value).build())

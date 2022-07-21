@@ -1,7 +1,5 @@
 package myscala.basic
 
-;
-
 /**
   * 模式匹配
   */

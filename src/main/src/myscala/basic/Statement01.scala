@@ -9,7 +9,7 @@ package myscala.basic
   *
   * s"$n"
   *
-  * @author liuqiang
+  * @author zhanglin
   * @since 2020/4/28 9:30
   */
 object Statement01 {

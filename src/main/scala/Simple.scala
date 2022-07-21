@@ -7,12 +7,13 @@ object Simple {
     }
     println(result)*/
 
-    val newList = List(1,2,3).map ( x => x * 2 )
+    val newList = List(1, 2, 3).map(x => x * 2)
     newList.foreach(println)
   }
+
   def doubles(x: => Int) = {
     println("Now doubling " + x)
-    x*2
+    x * 2
   }
 
 }
