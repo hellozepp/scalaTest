@@ -6,8 +6,8 @@ spark学习 使用scala语言
 1. Scala 数据类型
 1. Scala 访问修饰符 -- Inherte.scala
 1. Scala 运算符 - 逻辑运算.scala Operational.scala
-1. Scala IF...ELSE 语句
-1. Scala 循环
+1. Scala IF...ELSE 语句 -- if守卫
+1. Scala 循环 -- 循环守卫
 1. Scala 方法与函数 Function01.scala  Function.scala 
 1. Scala 闭包
 1. Scala 字符串
@@ -15,7 +15,7 @@ spark学习 使用scala语言
 1. Scala Collection(集合)
 1. Scala Iterator（迭代器）
 1. Scala 类和对象 -- 伴生类、伴生对象、case class、抽象类、继承
-1. Scala Trait(特征)
+1. Scala Trait(特质) -- 特质混入、抽象类不同类型混入
 1. Scala 模式匹配 -- 字段匹配、类匹配、对象匹配、自定义操作符
 1. Scala 正则表达式
 1. Scala 异常处理
