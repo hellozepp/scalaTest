@@ -14,9 +14,9 @@ spark学习 使用scala语言
 1. Scala 数组
 1. Scala Collection(集合)
 1. Scala Iterator（迭代器）
-1. Scala 类和对象
+1. Scala 类和对象 -- 伴生类、伴生对象、case class、抽象类、继承
 1. Scala Trait(特征)
-1. Scala 模式匹配
+1. Scala 模式匹配 -- 字段匹配、类匹配、对象匹配、自定义操作符
 1. Scala 正则表达式
 1. Scala 异常处理
 1. Scala 提取器(Extractor)
