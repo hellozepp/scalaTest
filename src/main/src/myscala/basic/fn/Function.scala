@@ -21,6 +21,8 @@ object Function {
     println(increase1(1))
     //Scala函数按函数名称调用
     delayed(new Function().time())
+    // 闭包是一个函数，返回值依赖于声明在函数外部的一个或多个变量。
+    //闭包通常来讲可以简单的认为是可以访问一个函数里面局部变量的另外一个函数。
     //定义的函数变量 multiplier 成为一个"闭包"，因为它引用到函数外面定义的变量
     var factor = 3
     val multiplier = (i: Int) => i * factor
