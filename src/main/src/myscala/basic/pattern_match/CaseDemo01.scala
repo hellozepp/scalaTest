@@ -1,5 +1,4 @@
-package myscala.bigData.cases
-
+package myscala.basic.pattern_match
 
 import scala.util.Random
 

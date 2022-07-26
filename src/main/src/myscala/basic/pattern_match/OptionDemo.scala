@@ -1,5 +1,4 @@
-package myscala.bigData.cases
-
+package myscala.basic.pattern_match
 
 object OptionDemo { //option 代表结果可能有可能无 是一个抽象类，None 和 some是子类
   def main(args: Array[String]) {
